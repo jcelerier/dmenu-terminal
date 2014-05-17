@@ -1,0 +1,16 @@
+* dmenu-terminal
+  Allows you to open a terminal app using [[http://tools.suckless.org/dmenu/][dmenu]].
+** Setting it up
+   Put =dmenu-terminal= somewhere on your =$PATH=.
+** Hooking it up to XMonad
+  It's easy to run this from xmonad, here's how I do it:
+#+BEGIN_SRC haskell
+import XMonad
+import XMonad.Util.EZConfig
+
+main = xmonad $ defaultConfig
+        `additionalKeysP`
+        [ ("M-b" , spawn "$HOME/bin/dmenu-terminal") ]
+#+END_SRC
+** See also
+   This is loosely based off of [[https://github.com/losingkeys/dmenu-web][dmenu-web]]

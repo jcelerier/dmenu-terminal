@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# use the terminal emulator passed-in, or fall back to urxvt or xterm if installed
+terminal="$1"
+
+if [ ! -x "$temrinal" -a -x "$(command -v urxvt)" ]; then
+  terminal="$(command -v urxvt)"
+elif [ -x "$(command -v xterm)" ]; then
+  terminal="$(command -v xterm)"
+else
+  echo "Usage: $0 <some-terminal>"
+  exit 64
+fi
+
+# make sure dmenu is installed
+if [ ! -x "$(command -v dmenu)" ]; then
+  echo "Requires dmenu"
+  exit 69
+fi
+
+#FIXME: search multiple directories
+choice=$(ls /usr/bin | dmenu)
+
+if [ -x "$(command -v $choice)" ]; then
+  $terminal -e $choice
+fi
