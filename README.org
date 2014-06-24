@@ -12,5 +12,9 @@ main = xmonad $ defaultConfig
         `additionalKeysP`
         [ ("M-b" , spawn "$HOME/bin/dmenu-terminal") ]
 #+END_SRC
+** Hooking it up to i3
+
+    bindsym $mod+t exec bin/dmenu-terminal
+
 ** See also
    This is loosely based off of [[https://github.com/losingkeys/dmenu-web][dmenu-web]]
