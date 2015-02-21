@@ -26,7 +26,7 @@ binary=$(awk '{print $1;}' <<< $choice)
 
 if [ -x "$(command -v $choice)" ]; then
   #FIXME: Wayland
-  if ldd /usr/bin/$binary | grep libX11 > /dev/null; then
+  if ldd /usr/bin/$binary | egrep -q '(libX11|libxcb)\.so'; then
     $choice
   else
     $TERMINAL -e $choice
