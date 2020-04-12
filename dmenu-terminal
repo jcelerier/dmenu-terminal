@@ -9,12 +9,17 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # fall back to terminal variable, urxvt, gnome-terminal, or xterm if installed
+# also alacritty and st
 if [ ! -x "$TERMINAL" -a -x "$(command -v urxvt)" ]; then
   TERMINAL="$(command -v urxvt)"
 elif [ -x "$(command -v gnome-terminal)" ]; then
   TERMINAL="$(command -v gnome-terminal)"
 elif [ -x "$(command -v xterm)" ]; then
   TERMINAL="$(command -v xterm)"
+elif [ -x "$(command -v st)" ]; then
+  TERMINAL="$(command -v st)"
+elif [ -x "$(command -v alacritty)" ]; then
+  TERMINAL="$(command -v alacritty)"
 else
   echo "Usage: $0 <some-terminal>"
   exit 64
